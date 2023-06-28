@@ -15,8 +15,7 @@ const letters =
     12:"f",
     22:"g",
     32:"h",
-    42:"i",
-    42:"j",
+    42:["i","j"],
     52:"k",
     13:"l",
     23:"m",
@@ -34,38 +33,33 @@ const letters =
     45:"y",
     55:"z",
   }
+   
+    //split input into individual elements(split returns a new array)
+    //set that value = value.toLowercase
+    //with that value, see if letters include input
+    //return letters.indexOf element
+    // spaces should be maintained throughout 
+    // set value to decoded
 
+    // if input includes letter
+    // decoded = value.join
+    // output should still be a string 
+    
   function polybius(input, encode = true) {
-    let message = ""
-//invalid
-    //**if** (input % 3)return false 
-    if(input % 3){return false} 
-//encode
-    
-    if(encode === true){
-    //need to split input into separate array elements 
-    let inputArray = input.toLowerCase().split("")
-    console.log(inputArray)
-    return inputArray
-    
-    //check if letters object includes input array
-    let letterValues = Object.values(letters);
-    if (letterValues.includes(inputArray)) {
-      return letterValues.indexOf(inputArray);
+    if (input % 3) {
+      return false;
     }
-
-    return message;
-  }
-
-//---------------------------------
-//decode
-
-    //**else** split input into individual elements(split returns a new array) ex [T,h,i,n,k,f,u,l]
-    //set that inputArray = inputArray.toLowercase ex [t,h,i,n,k,f,u,l]
-    //for in loop | iterates through letters object 
-    //if letters.include(inputArray)
-    //encoded = letters.indexOf(element)
-    //return encoded
+  
+    if (encode === true) {
+      const inputArray = input.toLowerCase().split("");
+      const matcher = inputArray.map((element) => {
+        const key = Object.keys(letters).find((keyObj) =>
+          letters[keyObj].includes(element)
+        );
+        return key ? key.toString() : element;
+      });
+      return matcher.join("");
+    }
   }
 
   return {
