@@ -53,8 +53,8 @@ const letters =
     if (encode === true) {
       const inputArray = input.toLowerCase().split("");
       const matcher = inputArray.map((element) => {
-        const key = Object.keys(letters).find((keyObj) =>
-          letters[keyObj].includes(element)
+        const key = Object.keys(letters).find((key) =>
+          letters[key].includes(element)
         );
         if (key) {
           return key.toString();

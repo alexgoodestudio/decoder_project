@@ -8,16 +8,16 @@ describe("caesar", () =>{
         ]
     const expected = 'wklqnixo'
     const actual = caesar(input, shift, encode = true)
-    expect(actual).to.equal(expected)
+    expect(actual).to.eql(expected)
     })
 })
-describe("caesar", () =>{
+describe("caesar()", () =>{
     it("should return the an decoded word", () =>{
         const input = [
             caesar("wklqnixo", 3, false)
         ]
     const expected = 'thinkful'
     const actual = caesar(input, shift, encode = false)
-    expect(actual).to.equal(expected)
+    expect(actual).to.eql(expected)
     })
 })
