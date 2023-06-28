@@ -28,10 +28,11 @@ const caesarModule = (function () {
 // if the number is greater than 25(the last index) it subtracts 26 
             if(num > 25){
               num = num - 26;
+// if the number is less than 0(the first index) it adds 26 
             } else if(num < 0){
               num = num + 26;
             }
-            return letters.at(num)//letters[num] same way
+            return letters[num]
           }else{
             return element;
           };      
@@ -56,10 +57,9 @@ const caesarModule = (function () {
         });
         return numMsgArray.join("")
       }
-     
       // your solution code here
     }
-  
+
     return {
       caesar,
     };
