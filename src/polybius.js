@@ -15,7 +15,8 @@ const letters =
     12:"f",
     22:"g",
     32:"h",
-    42:"i/j",
+    42:"i",
+    42:"j",
     52:"k",
     13:"l",
     23:"m",
@@ -35,7 +36,7 @@ const letters =
   }
 
   function polybius(input, encode = true) {
-    
+    let message = ""
 //invalid
     //**if** (input % 3)return false 
     if(input % 3){return false} 
@@ -48,10 +49,13 @@ const letters =
     return inputArray
     
     //check if letters object includes input array
-    // message = letters.includes(input)
-    //let decode = letters.indexOf(input)
-    //return decode
+    let letterValues = Object.values(letters);
+    if (letterValues.includes(inputArray)) {
+      return letterValues.indexOf(inputArray);
     }
+
+    return message;
+  }
 
 //---------------------------------
 //decode
