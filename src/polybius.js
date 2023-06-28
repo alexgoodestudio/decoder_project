@@ -56,7 +56,11 @@ const letters =
         const key = Object.keys(letters).find((keyObj) =>
           letters[keyObj].includes(element)
         );
-        return key ? key.toString() : element;
+        if (key) {
+          return key.toString();
+        } else {
+          return element;
+        }
       });
       return matcher.join("");
     }
