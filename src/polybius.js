@@ -76,29 +76,29 @@ let pair = input.split(" ");
 //if we have multiple words, it will return ["string", "string"]
 //check if input is one word or two word
 //method3
-pair.map((element)=>{
+pair = pair.map((element)=>{
   let matchedE =  element.match(/.{1,2}/g);
   console.log(matchedE)
-  return e;
+  return matchedE;
 })
 //[['12','12','23]] [['12','23],['34','34','34']]
 //end of method3
-//console.log(pair)
-if(pair.length > 1){
-  let pair1 = pair[0];//first word
-  let pair2 = pair[1];//second word
+// console.log("##### this is the pair after matched:",pair)
+// if(pair.length > 1){
+//   let pair1 = pair[0];//first word
+//   let pair2 = pair[1];//second word
 // console.log(pair1)
 // console.log(pair2)
-let temp = pair1.concat(pair2)
+//let temp = pair1.concat(pair2)
 // console.log(temp.split(""), typeof temp)}
   if(temp.length % 2 !== 0){
     return false
   }else{
 
-  pair1 = pair1.match(/.{1,2}/g);
-  //pair1 = pair1.push(" ")
-  pair2 = pair2.match(/.{1,2}/g);
-  pair = [...pair1," ",...pair2]
+  // pair1 = pair1.match(/.{1,2}/g);
+  // //pair1 = pair1.push(" ")
+  // pair2 = pair2.match(/.{1,2}/g);
+  // pair = [...pair1," ",...pair2]
 
   // pair = [`${pair1} ${pair2}`]
   //pair = input.match(/.{1,2}/g);
@@ -118,7 +118,7 @@ let temp = pair1.concat(pair2)
   // console.log(filteredValues.join(""));
   return filteredValues.join("");
 }
-  }
+  // }
 }
     }
   }
