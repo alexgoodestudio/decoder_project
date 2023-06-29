@@ -69,6 +69,9 @@ const letters =
   
 
 if(encode === false){
+  if(input.length % 2 !== 0){
+    return false
+  }else{
 // numbers input must be even or return false
 // console.log(input)
 let pair = input.split(" ");
@@ -78,9 +81,18 @@ let pair = input.split(" ");
 //method3
 pair = pair.map((element)=>{
   let matchedE =  element.match(/.{1,2}/g);
-  console.log(matchedE)
+  //console.log(matchedE)
   return matchedE;
 })
+
+// let decoded = matchedE.map(pair => letter[pair]);
+// return decoded.join("");
+let resultMsg = [];
+for (let i in matched){
+  const result = i.map(pair=>letters[pair])
+  resultMsg.push(result);
+}
+console.log(resultMsg)
 //[['12','12','23]] [['12','23],['34','34','34']]
 //end of method3
 // console.log("##### this is the pair after matched:",pair)
@@ -91,9 +103,9 @@ pair = pair.map((element)=>{
 // console.log(pair2)
 //let temp = pair1.concat(pair2)
 // console.log(temp.split(""), typeof temp)}
-  if(temp.length % 2 !== 0){
-    return false
-  }else{
+  // if(temp.length % 2 !== 0){
+  //   return false
+  // }else{
 
   // pair1 = pair1.match(/.{1,2}/g);
   // //pair1 = pair1.push(" ")
@@ -104,23 +116,33 @@ pair = pair.map((element)=>{
   //pair = input.match(/.{1,2}/g);
   // console.log("########",pair)
 // Get the keys of the letters object
-  const keys = Object.keys(letters); 
+ //// const keys = Object.keys(letters); 
 // Map  keys to their corresponding values from the letters 
-  const filteredValues = pair.map((key) => {
-// keep spaces 
-    if (keys.includes(key)) {
+//nested array inside of pair
 
-      return letters[key]; 
-    } else {
-      return ' ';
-    }
-  });
-  // console.log(filteredValues.join(""));
-  return filteredValues.join("");
+//[['12','23],['34','34','34']]
+//filteredValues will be [['c','c','s'], ['a','c','c']]
+//=> ['segfws','sgvs']
+ //// const filteredValues = pair.map((key) => {
+// keep spaces key will be ['a','c'...]
+//    key.map((num)=>{
+//     console.log(num)
+//      if (keys.includes(num)) {
+//        console.log(letters[num])
+//        return letters[num]; 
+//      } else {
+//        return ' ';
+//      }
+//    })
+//    return key.join("")
+//   });
+//   // console.log(filteredValues.join(""));
+//   console.log(filteredValues.join(" "))
+//   return filteredValues.join(" ");
+// }
+  }
 }
-  // }
-}
-    }
+   }
   }
 
   return {
