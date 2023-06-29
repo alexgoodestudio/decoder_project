@@ -1,117 +1,94 @@
-// Please refrain from tampering with the setup code provided here,
-// as the index.html and test files rely on this setup to work properly.
-// Only add code (helper methods, variables, etc.) within the scope
-// of the anonymous function on line 6
-
 const polybiusModule = (function () {
-  // you can add any code you want within this function scope}
+  const letters = {
+    11: "a",
+    21: "b",
+    31: "c",
+    41: "d",
+    51: "e",
+    12: "f",
+    22: "g",
+    32: "h",
+    42: "(i/j)",
+    52: "k",
+    13: "l",
+    23: "m",
+    33: "n",
+    43: "o",
+    53: "p",
+    14: "q",
+    24: "r",
+    34: "s",
+    44: "t",
+    54: "u",
+    15: "v",
+    25: "w",
+    35: "x",
+    45: "y",
+    55: "z",
+  };
 
-const letters =
-  {
-    11:"a",
-    21:"b",
-    31:"c",
-    41:"d",
-    51:"e",
-    12:"f",
-    22:"g",
-    32:"h",
-    42:"(i/j)" ,
-    52:"k",
-    13:"l",
-    23:"m",
-    33:"n",
-    43:"o",
-    53:"p",
-    14:"q",
-    24:"r",
-    34:"s",
-    44:"t",
-    54:"u",
-    15:"v",
-    25:"w",
-    35:"x",
-    45:"y",
-    55:"z",
-  }
-     
   function polybius(input, encode = true) {
-  
     if (encode === true) {
-//split input into individual elements(split returns a new array)
-//set that value = value.toLowercase
+      
+// inputArray set that value = toLowercase /split input into individual elements(split returns a new array)
       const inputArray = input.toLowerCase().split("");
 //map to iterate over each element of the inputArray. map will create a new array
       const matcher = inputArray.map((element) => {
 // Object.keys returns an array of keys from the letters obj
-        const key = Object.keys(letters).find((keyValue) =>
 //search for element in the array returned by Object.keys
-          letters[keyValue].includes(element)
+
+        const key = Object.keys(letters).find(
+          //(includes returns true or false)
+          (keyValue) => letters[keyValue].includes(element)
         );
         if (key) {
-// output should still be a string 
           return key.toString();
         } else {
           return element;
         }
       });
       return matcher.join("");
-    }else{
-
+    } else {
 //decoder starts here
 // MY SCOPE: how to find if an arrays elements are included in an objects key. If so return a join and return a string value
 
 // ideas 1 map the LETTER array to create a new array that filters if PAIR includes any of letters key.objects
     //include returns true or false
 
-//  we need to FIND out if the new PAIR array INCLUDES any KEY OBJECTS of LETTERS
-  //include returns true or false
-  
+// idea 2 we need to FIND out if the new PAIR array INCLUDES(returns true or false) any KEY OBJECTS of LETTERS
 
-if(encode === false){
-  if(input.length % 2 !== 0){
-    return false
-  }else{
+      if (input.split(" ").join("").length % 2 !== 0) {
 // numbers input must be even or return false
-// console.log(input)
-let pair = input.split(" ");
-//if we have only one word, it will return ["string"]
-//if we have multiple words, it will return ["string", "string"]
-//check if input is one word or two word
-//method3
-pair = pair.map((element)=>{
-  let matchedE =  element.match(/.{1,2}/g);
-  //console.log(matchedE)
-  return matchedE;
-})
+        return false;
+      } else {
+//split method at spaces to separate into by the space into new arrays
+        const pair = input.split(" ").map((element) => {
+//creates pairs of the indexes 
+          const matchedE = element.match(/.{1,2}/g);
+          console.log(matchedE,"*********") //[['12','23],['34','34','34']]
+          return matchedE;
+        });
 
-// let decoded = matchedE.map(pair => letter[pair]);
-// return decoded.join("");
-let resultMsg = [];
-for (let i of pair){
-  const result = i.map(number=>letters[number])
-  resultMsg.push(result);
-}
-//resultMsg should be like [['c','c']]
+        const resultMsg = pair
+          .map((arr) => {
+//map over array and join the letters
+            return arr.map((number) => letters[number]).join("");
+          })
+//takes that result and joins the words
+          .join(" ");
+          console.log(resultMsg,"!!!!!!")
+        return resultMsg;
+      }
+    }
+  }
 
+  return {
+    polybius,
+  };
+})();
 
-// resultMsg -> "m,e,s,s,a,g,e".
-//split(",") -> [] result += 
-// resultMsg.join("")
-let result = "";
-for(let i of resultMsg){
-  
-  result += i.join("")
-}
+module.exports = { polybius: polybiusModule.polybius };
 
-//resultMsg should be like this: [['s','v'],['s','a']]
-resultMsg = resultMsg.map((arr)=>{
-  return arr.join("")
-})
-//resultMsg should be like this: ['sfsef','sefgwes']
-resultMsg = resultMsg.join(" ")
-console.log(resultMsg);
-return resultMsg;
 //[['12','12','23]] [['12','23],['34','34','34']]
 //end of method3
 // console.log("##### this is the pair after matched:",pair)
@@ -158,38 +135,3 @@ return resultMsg;
 //   // console.log(filteredValues.join(""));
 //   console.log(filteredValues.join(" "))
 //   return filteredValues.join(" ");
-// }
-  }
-}
-   }
-  }
-
-  return {
-    polybius,
-  };
-})();
-
-module.exports = { polybius: polybiusModule.polybius };
-
-/*
-
-
-polybius()
-
-input refers to the inputted text to be encoded or decoded.
-encode refers to whether you should encode or decode the message. By default it is set to true.
-When building the function, keep the following constraints and rules in mind:
-
-You are welcome to assume that no additional symbols will be included as part of the input. Only spaces and letters will be included.
-When encoding, your output should still be a string.
-When decoding, the number of characters in the string excluding spaces should be even. Otherwise, return false.
-Spaces should be maintained throughout.
-Capital letters can be ignored.
-The letters I and J share a space. When encoding, both letters can be converted to 42, but when decoding, both letters should somehow be shown.
-Examples
-polybius("thinkful"); //> "4432423352125413"
-polybius("Hello world"); //> '3251131343 2543241341'
-
-polybius("3251131343 2543241341", false); //> "hello world"
-polybius("4432423352125413", false); //> "th(i/j)nkful
-polybius("44324233521254134", false); //> false */
