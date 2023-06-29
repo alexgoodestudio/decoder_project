@@ -33,36 +33,43 @@ const letters =
     45:"y",
     55:"z",
   }
-   
-    //split input into individual elements(split returns a new array)
-    //set that value = value.toLowercase
-    //with that value, see if letters include input
-    //return letters.indexOf element
-    // spaces should be maintained throughout 
-    // set value to decoded
-
-    // if input includes letter
-    // decoded = value.join
-    // output should still be a string 
-    
+     
   function polybius(input, encode = true) {
     if (input % 3) {
       return false;
     }
   
     if (encode === true) {
+//split input into individual elements(split returns a new array)
+//set that value = value.toLowercase
       const inputArray = input.toLowerCase().split("");
+//map to iterate over each element of the inputArray. map will create a new array
       const matcher = inputArray.map((element) => {
-        const key = Object.keys(letters).find((key) =>
-          letters[key].includes(element)
+// Object.keys returns an array of keys from the letters obj
+        const key = Object.keys(letters).find((keyValue) =>
+//search for element in the array returned by Object.keys
+          letters[keyValue].includes(element)
         );
         if (key) {
+// output should still be a string 
           return key.toString();
         } else {
           return element;
         }
       });
       return matcher.join("");
+    }else{
+//decoder starts here
+if(encode === false){
+  if(input % 3){
+    console.log("this jawn is odd")
+    return false
+  }else{
+  let pair = input.match(/.{1,2}/g);
+  console.log(pair, "************")
+  return pair
+  }
+}
     }
   }
 
