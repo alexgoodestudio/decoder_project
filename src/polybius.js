@@ -88,11 +88,30 @@ pair = pair.map((element)=>{
 // let decoded = matchedE.map(pair => letter[pair]);
 // return decoded.join("");
 let resultMsg = [];
-for (let i in matched){
-  const result = i.map(pair=>letters[pair])
+for (let i of pair){
+  const result = i.map(number=>letters[number])
   resultMsg.push(result);
 }
-console.log(resultMsg)
+//resultMsg should be like [['c','c']]
+
+
+// resultMsg -> "m,e,s,s,a,g,e".
+//split(",") -> [] result += 
+// resultMsg.join("")
+let result = "";
+for(let i of resultMsg){
+  
+  result += i.join("")
+}
+
+//resultMsg should be like this: [['s','v'],['s','a']]
+resultMsg = resultMsg.map((arr)=>{
+  return arr.join("")
+})
+//resultMsg should be like this: ['sfsef','sefgwes']
+resultMsg = resultMsg.join(" ")
+console.log(resultMsg);
+return resultMsg;
 //[['12','12','23]] [['12','23],['34','34','34']]
 //end of method3
 // console.log("##### this is the pair after matched:",pair)
