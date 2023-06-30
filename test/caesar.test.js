@@ -1,7 +1,7 @@
 // Write your tests here!
 const {caesar} = require("../src/caesar")
 const expect = require("chai").expect;
-describe("caesar()",()=>{
+describe("caesar()",() => {
     it("encode one word, shift is positive, should return the right secret code",()=>{
         const expected = 'wklqnixo';
         const actual = caesar("thinkful", 3);
@@ -34,12 +34,12 @@ describe("caesar()",()=>{
     });
     it("receive a message, but shift is bigger than 25",()=>{
         const expected = false;
-        const actual = caesar("thinkful",99);
+        const actual = caesar("thinkful", 99);
         expect(actual).to.eql(expected);
     });
     it("receive a message, but shift is smaller than -25",()=>{
         const expected = false;
-        const actual = caesar("thinkful",-26);
+        const actual = caesar("thinkful", -26);
         expect(actual).to.eql(expected);
     });
-})
+} )

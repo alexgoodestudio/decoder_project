@@ -18,11 +18,15 @@ const substitutionModule = (function () {
 // alphabet = bsdas
 //a  b  c  d  e  
 //b  s  d  a  s  
+if(alphabet.length < 26 || new Set(alphabet).size !== 26 ){
+  return false
+}
 
 //ENCODE =true
 //splitting alphabet and input into an array of characters 
 const splitstring = alphabet.toLowerCase().split("")
 const inputArr = input.toLowerCase().split("")
+
 //if alphabet is longer than 26 characters return false, must be a string
 if(encode === true && alphabet.length === 26){
 // we are creating a new array that sets alphabet array to have 

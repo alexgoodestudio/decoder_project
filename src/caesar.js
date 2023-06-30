@@ -9,11 +9,17 @@ const caesarModule = (function () {
     ];
 //a  b  c  d  e  f  g  h  i  j  k   l   m   n   o   p   q   r   s   t   u   v   w   x   y   z   
 //0  1  2  3  4  5  6  7  8  9  10  11  12  13 14  15  16  17  18  19  20  21  22  23  24  25
+// receive a message, but without shift, should return the original message
 
     function caesar(input, shift, encode = true) {
+      if(shift === undefined){
+        return input
+      }
 //If the shift value isn't present, equal to 0, less than -25, or greater than 25, the function should return false.
-      if(shift === 0||shift < -25 || shift > 25){return false}
-      if(encode === true){
+      if(typeof shift !== 'number' ||shift === 0  ||shift < -25 || shift > 25){
+        return false
+      }
+      if(encode){
 //initialing a value that splits the input into an array of each of the words letter
         const msgArray = input.split("");
 //initializes a value that maps a new array that makes all its elements lowercase lower case
@@ -37,6 +43,7 @@ const caesarModule = (function () {
             return element;
           };      
         });
+// join array to make it a string
         return numMsgArray.join("")
       }else{
         const msgArray = input.split("");
@@ -50,7 +57,7 @@ const caesarModule = (function () {
             } else if(num < 0){
               num = num + 26;
             }
-            return letters.at(num)
+            return letters[num]
           }else{
             return element;
           };      
@@ -59,7 +66,7 @@ const caesarModule = (function () {
       }
       // your solution code here
     }
-
+    console.log(caesar("HEllo There", 3, encode = true), "%%%%%%%%%%%%%%%%%%")
     return {
       caesar,
     };
